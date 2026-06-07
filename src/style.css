@@ -1,0 +1,434 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+  }
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-variation-settings:
+      "FILL" 0,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+    vertical-align: middle;
+  }
+
+  .flat-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0px 2px 4px rgba(30, 41, 59, 0.05);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+
+  /* Card shadow utility matching original design */
+  .card-shadow {
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+  }
+
+  /* Form focus ring matching original */
+  .custom-focus:focus {
+    outline: none;
+    ring: 2px;
+    ring-color: theme("colors.primary");
+    border-color: theme("colors.primary");
+  }
+
+  /* Page transition animations */
+  .page {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Glass effect for headers */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Transaction card shadow */
+  .transaction-card-shadow {
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+  }
+}
+
+@layer utilities {
+  /* Font size utilities mapped to config */
+  .text-display {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .font-display {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text-headline-lg {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  .font-headline-lg {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .text-headline-md {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+
+  .font-headline-md {
+    font-weight: 600;
+  }
+
+  .text-headline-sm {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  .font-headline-sm {
+    font-weight: 600;
+  }
+
+  .text-body-lg {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .font-body-lg {
+    font-weight: 400;
+  }
+
+  .text-body-md {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .font-body-md {
+    font-weight: 400;
+  }
+
+  .text-label-md {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .font-label-md {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .text-label-sm {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+  }
+
+  .font-label-sm {
+    font-weight: 600;
+  }
+
+  /* Spacing utilities mapped to config */
+  .p-space-xs {
+    padding: 4px;
+  }
+  .p-space-sm {
+    padding: 8px;
+  }
+  .p-space-md {
+    padding: 16px;
+  }
+  .p-space-lg {
+    padding: 24px;
+  }
+  .p-space-xl {
+    padding: 40px;
+  }
+  .p-space-2xl {
+    padding: 64px;
+  }
+
+  .px-space-xs {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .px-space-sm {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .px-space-md {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .px-space-lg {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .px-space-xl {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .px-space-2xl {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .py-space-xs {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .py-space-sm {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .py-space-md {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .py-space-lg {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .py-space-xl {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .py-space-2xl {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .m-space-xs {
+    margin: 4px;
+  }
+  .m-space-sm {
+    margin: 8px;
+  }
+  .m-space-md {
+    margin: 16px;
+  }
+  .m-space-lg {
+    margin: 24px;
+  }
+  .m-space-xl {
+    margin: 40px;
+  }
+  .m-space-2xl {
+    margin: 64px;
+  }
+
+  .mx-space-xs {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .mx-space-sm {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .mx-space-md {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .mx-space-lg {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  .mx-space-xl {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  .mx-space-2xl {
+    margin-left: 64px;
+    margin-right: 64px;
+  }
+
+  .my-space-xs {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .my-space-sm {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .my-space-md {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .my-space-lg {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .my-space-xl {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .my-space-2xl {
+    margin-top: 64px;
+    margin-bottom: 64px;
+  }
+
+  .mt-space-xs {
+    margin-top: 4px;
+  }
+  .mt-space-sm {
+    margin-top: 8px;
+  }
+  .mt-space-md {
+    margin-top: 16px;
+  }
+  .mt-space-lg {
+    margin-top: 24px;
+  }
+  .mt-space-xl {
+    margin-top: 40px;
+  }
+  .mt-space-2xl {
+    margin-top: 64px;
+  }
+
+  .mb-space-xs {
+    margin-bottom: 4px;
+  }
+  .mb-space-sm {
+    margin-bottom: 8px;
+  }
+  .mb-space-md {
+    margin-bottom: 16px;
+  }
+  .mb-space-lg {
+    margin-bottom: 24px;
+  }
+  .mb-space-xl {
+    margin-bottom: 40px;
+  }
+  .mb-space-2xl {
+    margin-bottom: 64px;
+  }
+
+  .ml-space-xs {
+    margin-left: 4px;
+  }
+  .ml-space-sm {
+    margin-left: 8px;
+  }
+  .ml-space-md {
+    margin-left: 16px;
+  }
+  .ml-space-lg {
+    margin-left: 24px;
+  }
+  .ml-space-xl {
+    margin-left: 40px;
+  }
+  .ml-space-2xl {
+    margin-left: 64px;
+  }
+
+  .mr-space-xs {
+    margin-right: 4px;
+  }
+  .mr-space-sm {
+    margin-right: 8px;
+  }
+  .mr-space-md {
+    margin-right: 16px;
+  }
+  .mr-space-lg {
+    margin-right: 24px;
+  }
+  .mr-space-xl {
+    margin-right: 40px;
+  }
+  .mr-space-2xl {
+    margin-right: 64px;
+  }
+
+  .gap-space-xs {
+    gap: 4px;
+  }
+  .gap-space-sm {
+    gap: 8px;
+  }
+  .gap-space-md {
+    gap: 16px;
+  }
+  .gap-space-lg {
+    gap: 24px;
+  }
+  .gap-space-xl {
+    gap: 40px;
+  }
+  .gap-space-2xl {
+    gap: 64px;
+  }
+
+  /* Margin utilities for desktop/mobile */
+  .px-margin-desktop {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .px-margin-mobile {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .py-margin-desktop {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .py-margin-mobile {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .bottom-margin-desktop {
+    bottom: 40px;
+  }
+  .bottom-margin-mobile {
+    bottom: 16px;
+  }
+  .right-margin-desktop {
+    right: 40px;
+  }
+  .right-margin-mobile {
+    right: 16px;
+  }
+
+  /* Max width container */
+  .max-w-container-max {
+    max-width: 1280px;
+  }
+}

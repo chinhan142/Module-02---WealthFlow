@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WealthFlow</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS processed by Vite -->
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="bg-background text-on-surface antialiased min-h-screen">
+    <!-- TOP NAVIGATION BAR (Unified across all screen toggles) -->
+    <header
+      id="top-nav-bar"
+      class="fixed top-0 left-0 w-full z-40 bg-surface flex justify-between items-center px-6 md:px-12 h-16 shadow-sm border-b border-outline-variant/30"
+    >
+      <div class="flex items-center gap-6">
+        <span
+          class="text-headline-sm font-bold text-primary flex items-center gap-1.5"
+          id="brand-logo"
+        >
+          <span class="material-symbols-outlined text-[28px]">payments</span>
+          WealthFlow
+        </span>
+        <nav class="hidden md:flex items-center gap-6" id="desktop-nav">
+          <a
+            class="tab-link text-primary border-b-2 border-primary pb-1 font-semibold text-xs uppercase"
+            id="nav-dashboard"
+            href="#dashboard"
+          >
+            Dashboard
+          </a>
+          <a
+            class="tab-link text-on-surface-variant hover:text-primary transition-colors font-semibold text-xs uppercase"
+            id="nav-categories"
+            href="#categories"
+          >
+            Categories
+          </a>
+          <a
+            class="tab-link text-on-surface-variant hover:text-primary transition-colors font-semibold text-xs uppercase"
+            id="nav-transactions"
+            href="#transactions"
+          >
+            Transactions
+          </a>
+          <a
+            class="tab-link text-on-surface-variant hover:text-primary transition-colors font-semibold text-xs uppercase"
+            id="nav-summary"
+            href="#summary"
+          >
+            Summary
+          </a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          class="p-1 text-on-surface-variant hover:bg-slate-100 transition-all rounded-full"
+        >
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button
+          class="hidden md:flex items-center gap-1 bg-primary text-white hover:opacity-90 px-4 py-2 rounded-xl text-xs font-bold uppercase transition-all"
+        >
+          <span class="material-symbols-outlined text-[16px]">add</span> Add
+          Entry
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-outline-variant"
+        >
+          <img
+            alt="User profile"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNIoZljYOUr3SR-bEx2gycAaIUUyVKot0lfeNLEjH2SqdLGoDIqGguBmA6bY5k2MFJ0qMd46UaQwFBD2fathxuH3pfFa-4yflvidSEGaxVETJ29m6x8aAqstARqTcz3UqEPhx7OXDbtNciQCVeRHeY1Y-GQOPRnJyzwzSxZsViwRYFK2W0IkskHZyH_SKBe4gLqDn8_EriBMzp24HeGtgXxHByLvZty2LZibS1n4q_RoDyW1WS22kGKRgtXIcx7PRdzrZj5EotqwU"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDE BAR FOR DESKTOP DRAWER -->
+    <aside
+      class="hidden lg:flex flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] p-6 bg-surface border-r border-outline-variant/30 w-64 z-30"
+    >
+      <nav class="flex-grow space-y-1 mt-4">
+        <a
+          id="side-dashboard"
+          class="side-link w-full flex items-center gap-4 px-4 py-3 bg-secondary-container/35 text-primary font-bold rounded-xl text-xs uppercase text-left transition-all"
+          href="#dashboard"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a
+          id="side-categories"
+          class="side-link w-full flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-slate-150 rounded-xl text-xs uppercase text-left transition-all"
+          href="#categories"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span>Categories</span>
+        </a>
+        <a
+          id="side-transactions"
+          class="side-link w-full flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-slate-150 rounded-xl text-xs uppercase text-left transition-all"
+          href="#transactions"
+        >
+          <span class="material-symbols-outlined">receipt_long</span>
+          <span>Transactions</span>
+        </a>
+        <a
+          id="side-summary"
+          class="side-link w-full flex items-center gap-4 px-4 py-3 text-slate-500 hover:bg-slate-150 rounded-xl text-xs uppercase text-left transition-all"
+          href="#reports"
+        >
+          <span class="material-symbols-outlined">assessment</span>
+          <span>Reports</span>
+        </a>
+      </nav>
+      <div class="border-t border-outline-variant/20 pt-4 space-y-1">
+        <button
+          class="w-full flex items-center gap-4 px-4 py-2.5 text-slate-500 hover:bg-slate-100 rounded-xl text-xs uppercase text-left transition-all"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span>Settings</span>
+        </button>
+        <button
+          class="w-full flex items-center gap-4 px-4 py-2.5 text-slate-500 hover:bg-red-50 hover:text-red-600 rounded-xl text-xs uppercase text-left transition-all"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENT VIEWS CANVAS WRAPPER -->
+    <main class="lg:ml-64 pt-20 min-h-screen">
+      <!-- HEADER CRITICAL BUDGET THRESHOLD ALERT TOAST -->
+      <div
+        id="budget-alarm"
+        class="hidden fixed top-20 right-6 z-50 max-w-sm bg-orange-50 border-l-4 border-orange-500 text-orange-900 p-4 rounded-r-xl shadow-lg animate-bounce"
+      >
+        <div class="flex gap-3">
+          <span class="material-symbols-outlined text-orange-500">warning</span>
+          <div>
+            <p class="font-bold text-xs uppercase">Threshold Warning</p>
+            <p id="budget-alarm-text" class="text-xs mt-1 leading-normal">
+              You exceeded a budget allocation.
+            </p>
+          </div>
+          <button class="text-orange-500 font-bold ml-auto self-start">
+            ×
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTION: DASHBOARD -->
+      <section
+        id="page-dashboard"
+        class="page px-6 md:px-12 py-8 max-w-container-max mx-auto space-y-8"
+      >
+        <div
+          id="dashboard-header"
+          class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 pb-2"
+        >
+          <div>
+            <h1
+              id="page-title"
+              class="text-2xl font-bold tracking-tight text-slate-800"
+            >
+              Financial Overview
+            </h1>
+            <p class="text-slate-400 text-sm mt-1">
+              Good morning, Alexander. Here is your current wealth status.
+            </p>
+          </div>
+          <div
+            id="filter-container"
+            class="bg-white border border-slate-200 p-2 rounded-xl shadow-sm"
+          >
+            <select
+              id="month-select"
+              class="bg-transparent border-none py-1 pl-2 pr-6 text-xs font-bold text-slate-700 outline-none cursor-pointer focus:ring-0"
+            >
+              <option>October 2023</option>
+              <option>September 2023</option>
+              <option>August 2023</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Bento Dashboard Grid -->
+        <div id="dashboard-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <!-- Large card: Total balance -->
+          <div
+            id="total-balance-card"
+            class="md:col-span-8 bg-white p-6 rounded-[24px] shadow-sm border border-slate-100 flex flex-col justify-between min-h-[220px] relative overflow-hidden"
+          >
+            <div
+              class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-primary"
+                  >account_balance_wallet</span
+                >
+                <span
+                  class="text-xs uppercase font-bold tracking-wider text-slate-400"
+                  >Total Balance</span
+                >
+              </div>
+              <h2
+                id="balance-amount"
+                class="text-3xl font-extrabold text-primary tracking-tight"
+              >
+                $124,592.00
+              </h2>
+              <div
+                class="mt-2 flex items-center gap-1 text-primary bg-primary/10 px-2.5 py-1 rounded-full w-fit"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >trending_up</span
+                >
+                <span class="text-xs font-semibold">+2.4% from last month</span>
+              </div>
+            </div>
+            <div class="relative z-10 flex gap-4 mt-6">
+              <button
+                class="bg-primary hover:bg-opacity-95 text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase transition-all"
+              >
+                Add Funds
+              </button>
+              <button
+                class="bg-slate-100 text-slate-700 hover:bg-slate-200 px-5 py-2.5 rounded-xl text-xs font-bold uppercase transition-all"
+              >
+                Transfer
+              </button>
+            </div>
+          </div>
+
+          <!-- Budget Circular ring chart -->
+          <div
+            id="budget-status-card"
+            class="md:col-span-4 bg-white p-6 rounded-[24px] shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center"
+          >
+            <span
+              class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4 self-start"
+              >Monthly Budget Usage</span
+            >
+            <div
+              class="relative w-32 h-32 mb-4 flex items-center justify-center"
+            >
+              <svg class="w-full h-full -rotate-90">
+                <circle
+                  class="text-slate-100"
+                  cx="64"
+                  cy="64"
+                  fill="transparent"
+                  r="54"
+                  stroke="#f1f5f9"
+                  stroke-width="8"
+                ></circle>
+                <circle
+                  id="budget-circle"
+                  class="text-primary transition-all duration-1000"
+                  cx="64"
+                  cy="64"
+                  fill="transparent"
+                  r="54"
+                  stroke="#006c49"
+                  stroke-width="8"
+                  stroke-dasharray="339.29"
+                  stroke-dashoffset="100"
+                ></circle>
+              </svg>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center"
+              >
+                <span
+                  id="budget-circle-pct"
+                  class="text-xl font-extrabold text-slate-800"
+                  >72%</span
+                >
+                <span
+                  class="text-[9px] uppercase font-bold text-slate-400 tracking-wider"
+                  >Spent</span
+                >
+              </div>
+            </div>
+            <h3 class="text-xs font-bold text-slate-700 mt-2">On Track</h3>
+            <p class="text-[11px] text-slate-400 max-w-[180px] mt-1">
+              You records align safely within specified limits standard
+              ceilings.
+            </p>
+          </div>
+
+          <!-- Income vs Expense -->
+          <div
+            id="income-expense-card"
+            class="md:col-span-4 grid grid-rows-2 gap-6"
+          >
+            <div
+              class="bg-white p-4 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center border-l-4 border-primary"
+            >
+              <div class="flex items-center justify-between mb-1">
+                <span
+                  class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  >Income This Month</span
+                >
+                <span class="material-symbols-outlined text-primary"
+                  >arrow_downward</span
+                >
+              </div>
+              <span id="income-amount" class="text-lg font-bold text-primary"
+                >+$8,450.00</span
+              >
+            </div>
+            <div
+              class="bg-white p-4 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center border-l-4 border-red-600"
+            >
+              <div class="flex items-center justify-between mb-1">
+                <span
+                  class="text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  >Expenses This Month</span
+                >
+                <span class="material-symbols-outlined text-red-500"
+                  >arrow_upward</span
+                >
+              </div>
+              <span id="expense-amount" class="text-lg font-bold text-slate-800"
+                >-$5,210.00</span
+              >
+            </div>
+          </div>
+
+          <!-- Recent Activities widgets -->
+          <div
+            id="recent-activity-card"
+            class="md:col-span-8 bg-white p-6 rounded-[24px] shadow-sm border border-slate-100 flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3
+                  class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+                >
+                  Recent Activity
+                </h3>
+                <button class="text-primary font-bold text-xs hover:underline">
+                  View All
+                </button>
+              </div>
+              <div id="recent-activity-container" class="space-y-1.5">
+                <!-- Dynamic records injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Savings Goals Card -->
+        <div
+          class="flat-card rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"
+        >
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-slate-800">New Car Fund</span>
+              <span class="text-xs font-bold text-slate-400">60%</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div
+                class="bg-primary h-full rounded-full"
+                style="width: 60%"
+              ></div>
+            </div>
+            <p class="text-[10px] text-slate-400 font-semibold mt-1 text-right">
+              $12,000 / $20,000
+            </p>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-slate-800"
+                >Emergency Reserve</span
+              >
+              <span class="text-xs font-bold text-slate-400">92%</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div
+                class="bg-primary h-full rounded-full"
+                style="width: 92%"
+              ></div>
+            </div>
+            <p class="text-[10px] text-slate-400 font-semibold mt-1 text-right">
+              $23,000 / $25,000
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: CATEGORIES -->
+      <section
+        id="page-categories"
+        class="page hidden px-6 md:px-12 py-8 max-w-container-max mx-auto space-y-8"
+      >
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/30 pb-4"
+        >
+          <div>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-800">
+              Category Budgets
+            </h1>
+            <p class="text-slate-400 text-sm mt-1">
+              Structure monthly allocations to monitor overages.
+            </p>
+          </div>
+          <button
+            id="add-category-btn"
+            class="bg-primary text-white hover:bg-opacity-95 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm transition-all"
+          >
+            New Category
+          </button>
+        </div>
+
+        <div
+          id="category-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- SECTION: TRANSACTIONS -->
+      <section
+        id="page-transactions"
+        class="page hidden px-6 md:px-12 py-8 max-w-container-max mx-auto space-y-8"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Add Form side -->
+          <div class="lg:col-span-4">
+            <div
+              class="bg-white border border-slate-200 rounded-[24px] p-6 shadow-sm space-y-4"
+            >
+              <h3
+                class="text-xs font-bold uppercase tracking-widest text-slate-400"
+              >
+                Quick Log Transaction
+              </h3>
+              <form id="transaction-form" class="space-y-4">
+                <div>
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
+                    >Type</label
+                  >
+                  <div class="flex bg-slate-100 p-1 rounded-xl">
+                    <button
+                      type="button"
+                      id="type-expense"
+                      class="flex-1 py-1 text-xs font-bold rounded-lg bg-white text-secondary shadow-sm"
+                    >
+                      Expense
+                    </button>
+                    <button
+                      type="button"
+                      id="type-income"
+                      class="flex-grow flex-1 py-1 text-xs font-bold rounded-lg text-slate-400"
+                    >
+                      Income
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
+                    >Amount ($)</label
+                  >
+                  <input
+                    type="hidden"
+                    id="transaction_type"
+                    name="type"
+                    value="expense"
+                  />
+                  <input
+                    type="number"
+                    id="amount"
+                    step="0.01"
+                    class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
+                    required
+                    placeholder="0.00"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
+                    >Category</label
+                  >
+                  <select
+                    id="category"
+                    class="w-full px-4 py-2 border border-slate-200 bg-white rounded-xl text-xs font-bold"
+                    required
+                  >
+                    <option value="Groceries">Groceries</option>
+                    <option value="Rent & Utilities">Rent & Utilities</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Dining Out">Dining Out</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Income">Salary & Income</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
+                    >Date</label
+                  >
+                  <input
+                    type="date"
+                    id="date"
+                    class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
+                    >Note Vendor</label
+                  >
+                  <input
+                    type="text"
+                    id="note"
+                    class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
+                    placeholder="E.g. Whole Foods"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  id="submit_transaction"
+                  class="w-full py-3 bg-primary hover:bg-opacity-95 text-white text-xs font-bold uppercase rounded-xl tracking-wider shadow-sm"
+                >
+                  Record Transaction
+                </button>
+                <button
+                  type="button"
+                  id="cancel_action"
+                  class="w-full py-3 bg-slate-100 text-slate-700 font-bold text-xs uppercase rounded-xl hover:bg-slate-200 transition-all"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Ledger Audit Table panel -->
+          <div class="lg:col-span-8 space-y-4">
+            <div
+              class="bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-sm"
+            >
+              <div
+                class="p-4 bg-slate-50 border-b border-light border-slate-100 flex items-center justify-between"
+              >
+                <span
+                  class="text-xs font-bold text-slate-400 uppercase tracking-wider"
+                  >Transaction Ledger Sheet</span
+                >
+              </div>
+              <div class="overflow-x-auto custom-scrollbar">
+                <table id="monthly-summary-table" class="w-full text-left">
+                  <thead>
+                    <tr
+                      class="bg-slate-50 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                    >
+                      <th class="py-3 px-4">Date</th>
+                      <th class="py-3 px-4">Category</th>
+                      <th class="py-3 px-4">Note / Vendor</th>
+                      <th class="py-3 px-4 text-right">Amount</th>
+                      <th class="py-3 px-4 text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="ledger-table-body"
+                    class="divide-y divide-slate-150"
+                  >
+                    <!-- Injected dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION: TRANSACTION HISTORY -->
+      <section
+        id="page-transaction-history"
+        class="page hidden px-6 md:px-12 py-8 max-w-container-max mx-auto space-y-8"
+      >
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/30 pb-4"
+        >
+          <div>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-800">
+              Transaction History
+            </h1>
+            <p class="text-slate-400 text-sm mt-1">
+              Review and manage your financial flow for the current period.
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative inline-block">
+              <select
+                class="appearance-none bg-white border border-slate-200 text-xs font-bold px-4 py-2.5 pr-10 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer transition-all shadow-sm"
+              >
+                <option>October 2023</option>
+                <option>September 2023</option>
+                <option>August 2023</option>
+                <option>Year to Date</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400"
+                >expand_more</span
+              >
+            </div>
+            <button
+              class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[20px]">add</span>
+              Add Transaction
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-[24px] shadow-sm border border-slate-100 overflow-hidden"
+        >
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-100">
+                  <th
+                    class="py-4 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="py-4 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  >
+                    Category
+                  </th>
+                  <th
+                    class="py-4 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  >
+                    Note
+                  </th>
+                  <th
+                    class="py-4 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-right"
+                  >
+                    Amount
+                  </th>
+                  <th
+                    class="py-4 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-wider text-center"
+                  >
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body" class="divide-y divide-slate-100">
+                <!-- Dynamic rows with delete-btn-001 to 005 -->
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="flex items-center justify-between px-6 py-4 border-t border-slate-100 bg-slate-50"
+          >
+            <span class="text-xs text-slate-400"
+              >Showing 5 of 124 transactions</span
+            >
+            <div class="flex items-center gap-2">
+              <button
+                class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded-lg text-slate-400 hover:bg-slate-100 transition-all"
+              >
+                <span class="material-symbols-outlined">chevron_left</span>
+              </button>
+              <button
+                class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-lg text-xs font-bold"
+              >
+                1
+              </button>
+              <button
+                class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-100 transition-all"
+              >
+                2
+              </button>
+              <button
+                class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-100 transition-all"
+              >
+                3
+              </button>
+              <button
+                class="w-10 h-10 flex items-center justify-center border border-slate-200 rounded-lg text-slate-400 hover:bg-slate-100 transition-all"
+              >
+                <span class="material-symbols-outlined">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: SUMMARY -->
+      <section
+        id="page-summary"
+        class="page hidden px-6 md:px-12 py-8 max-w-container-max mx-auto space-y-8"
+      >
+        <!-- Health Score bar -->
+        <div
+          class="bg-primary-container text-white p-6 rounded-[24px] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+        >
+          <div>
+            <h3 class="font-bold text-headline-sm">Financial Health Summary</h3>
+            <p class="text-white/80 text-xs mt-1 leading-normal max-w-2xl">
+              Your monthly budget ceilings remain inside optimized limits.
+              Maintain focus across high dining indices to stay ahead of
+              scheduled timeline trajectories.
+            </p>
+          </div>
+          <div
+            class="bg-white/10 p-4 rounded-xl border border-white/20 backdrop-blur-sm shadow-sm shrink-0 text-center"
+          >
+            <span
+              class="text-[9px] uppercase tracking-wider text-white/70 block"
+              >Overall Score</span
+            >
+            <span class="text-2xl font-extrabold text-white"
+              >84<span class="text-xs text-white/70">/100</span></span
+            >
+          </div>
+        </div>
+
+        <!-- Double column cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Spending circle mockup -->
+          <div
+            class="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm"
+          >
+            <h3
+              class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-4"
+            >
+              Spending Indices Analysis
+            </h3>
+            <div
+              class="flex flex-col sm:flex-row items-center justify-around gap-6"
+            >
+              <div class="relative w-36 h-36">
+                <svg class="w-full h-full" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="15.9"
+                    fill="transparent"
+                    stroke="#F1F5F9"
+                    stroke-width="2.5"
+                  ></circle>
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="15.9"
+                    fill="transparent"
+                    stroke="#00367a"
+                    stroke-width="3"
+                    stroke-dasharray="45 100"
+                    stroke-dashoffset="0"
+                  ></circle>
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="15.9"
+                    fill="transparent"
+                    stroke="#006c49"
+                    stroke-width="3.2"
+                    stroke-dasharray="25 100"
+                    stroke-dashoffset="-45"
+                  ></circle>
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="15.9"
+                    fill="transparent"
+                    stroke="#da3437"
+                    stroke-width="3.4"
+                    stroke-dasharray="15 100"
+                    stroke-dashoffset="-70"
+                  ></circle>
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="15.9"
+                    fill="transparent"
+                    stroke="#71a1ff"
+                    stroke-width="2.8"
+                    stroke-dasharray="15 100"
+                    stroke-dashoffset="-85"
+                  ></circle>
+                </svg>
+                <div
+                  class="absolute inset-0 flex flex-col items-center justify-center"
+                >
+                  <span class="text-[8px] uppercase font-bold text-slate-400"
+                    >Score</span
+                  >
+                  <span class="text-xs font-extrabold text-slate-800"
+                    >Optimal</span
+                  >
+                </div>
+              </div>
+              <div
+                class="space-y-1.5 text-[11px] font-semibold w-full max-w-[180px]"
+              >
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Rent & Utilities</span>
+                  <span class="font-bold">45%</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Groceries</span>
+                  <span class="font-bold">25%</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Entertainment</span>
+                  <span class="font-bold">15%</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">Dining & Other</span>
+                  <span class="font-bold">15%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerts warning logs -->
+          <div
+            class="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm space-y-4"
+          >
+            <h3
+              class="text-xs font-bold uppercase text-slate-400 tracking-wider"
+            >
+              Active Budget Alerts
+            </h3>
+            <div class="space-y-3">
+              <div
+                class="p-3 border-l-4 border-red-500 bg-red-50/50 rounded-r-xl space-y-1"
+              >
+                <div class="flex justify-between font-bold text-xs">
+                  <span class="text-red-900">Entertainment Allocation</span>
+                  <span class="text-red-600">+$70.00 Over</span>
+                </div>
+                <div
+                  class="w-full bg-slate-200 h-1 rounded-full overflow-hidden"
+                >
+                  <div class="bg-red-500 h-full" style="width: 100%"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-slate-400">
+                  <span>Ceiling: $250</span>
+                  <span>Spent: $320</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historical dataset table -->
+        <div
+          class="bg-white rounded-[24px] shadow-sm border border-slate-100 overflow-hidden"
+        >
+          <div class="p-5 border-b border-slate-100">
+            <h3
+              class="text-xs font-bold uppercase text-slate-400 tracking-widest"
+            >
+              Historical Breakdown Audit
+            </h3>
+          </div>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left">
+              <thead>
+                <tr
+                  class="bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b"
+                >
+                  <th class="py-3 px-5">Month</th>
+                  <th class="py-3 px-5 text-right">Income</th>
+                  <th class="py-3 px-5 text-right">Expenses</th>
+                  <th class="py-3 px-5 text-right">Net Balance</th>
+                  <th class="py-3 px-5 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-xs">
+                <tr>
+                  <td class="py-3.5 px-5 font-bold">Jun 2024</td>
+                  <td class="py-3.5 px-5 text-right text-primary">
+                    +$8,450.00
+                  </td>
+                  <td class="py-3.5 px-5 text-right text-slate-500">
+                    -$5,230.15
+                  </td>
+                  <td class="py-3.5 px-5 text-right font-bold text-primary">
+                    +$3,219.85
+                  </td>
+                  <td class="py-3.5 px-5 text-center">
+                    <span
+                      class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-bold"
+                      >Surplus</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-5 font-bold">May 2024</td>
+                  <td class="py-3.5 px-5 text-right text-primary">
+                    +$9,200.00
+                  </td>
+                  <td class="py-3.5 px-5 text-right text-slate-500">
+                    -$4,980.00
+                  </td>
+                  <td class="py-3.5 px-5 text-right font-bold text-primary">
+                    +$4,220.00
+                  </td>
+                  <td class="py-3.5 px-5 text-center">
+                    <span
+                      class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-bold"
+                      >Surplus</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3.5 px-5 font-bold">Apr 2024</td>
+                  <td class="py-3.5 px-5 text-right text-primary">
+                    +$7,800.00
+                  </td>
+                  <td class="py-3.5 px-5 text-right text-slate-500">
+                    -$7,620.00
+                  </td>
+                  <td class="py-3.5 px-5 text-right font-bold text-primary">
+                    +$180.00
+                  </td>
+                  <td class="py-3.5 px-5 text-center">
+                    <span
+                      class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-bold"
+                      >Surplus</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MOBILE FLOATING CONTROL FAB -->
+    <button
+      id="add-transaction-fab"
+      class="lg:hidden fixed bottom-20 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40 outline-none border-none"
+    >
+      <span class="material-symbols-outlined text-[32px]">add</span>
+    </button>
+
+    <!-- FLOATING BOTTOM NAVIGATION ON MOBILE LIGHT PORTS -->
+    <nav
+      class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 flex justify-around items-center py-2 z-40 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]"
+    >
+      <button
+        id="mob-dashboard"
+        class="flex flex-col items-center gap-0.5 text-primary"
+      >
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="text-[9px] font-bold uppercase">Dash</span>
+      </button>
+      <button
+        id="mob-categories"
+        class="flex flex-col items-center gap-0.5 text-slate-400"
+      >
+        <span class="material-symbols-outlined text-[20px]">category</span>
+        <span class="text-[9px] font-bold uppercase">Budgets</span>
+      </button>
+      <button
+        id="mob-transactions"
+        class="flex flex-col items-center gap-0.5 text-slate-400"
+      >
+        <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+        <span class="text-[9px] font-bold uppercase">Log</span>
+      </button>
+      <button
+        id="mob-summary"
+        class="flex flex-col items-center gap-0.5 text-slate-400"
+      >
+        <span class="material-symbols-outlined text-[20px]">assessment</span>
+        <span class="text-[9px] font-bold uppercase">Stats</span>
+      </button>
+    </nav>
+
+    <!-- MODAL POPUP: ADD TRANSACTION DETAILS -->
+    <div
+      id="modal-tx"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+    >
+      <div
+        class="bg-white w-full max-w-sm rounded-[24px] p-6 shadow-xl relative"
+      >
+        <button
+          class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-mono text-xl"
+        >
+          ×
+        </button>
+        <h3
+          class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4"
+        >
+          Record Transaction
+        </h3>
+
+        <form class="space-y-4">
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Type</label
+            >
+            <div class="flex bg-slate-100 p-1 rounded-xl">
+              <button
+                type="button"
+                id="modal-active-expense"
+                class="flex-grow flex-1 py-1 text-xs font-bold rounded-lg bg-white text-secondary shadow-sm"
+              >
+                Expense
+              </button>
+              <button
+                type="button"
+                id="modal-active-income"
+                class="flex-grow flex-1 py-1 text-xs font-bold rounded-lg text-slate-400"
+              >
+                Income
+              </button>
+            </div>
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Amount ($)</label
+            >
+            <input
+              type="number"
+              id="modal-amount"
+              step="0.01"
+              class="w-full px-4 py-2 border border-slate-200 rounded-xl font-bold"
+              required
+              placeholder="0.00"
+            />
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Category</label
+            >
+            <select
+              id="modal-select-category"
+              class="w-full px-4 py-2 border border-slate-200 bg-white rounded-xl text-xs font-bold"
+              required
+            >
+              <option value="Groceries">Groceries</option>
+              <option value="Rent & Utilities">Rent & Utilities</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Dining Out">Dining Out</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Income">Salary & Income</option>
+            </select>
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Date</label
+            >
+            <input
+              type="date"
+              id="modal-date"
+              class="w-full px-4 py-2 border border-slate-200 rounded-xl"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Note Vendor</label
+            >
+            <input
+              type="text"
+              id="modal-note"
+              class="w-full px-4 py-2 border border-slate-200 rounded-xl"
+              placeholder="E.g. Gas Refill"
+            />
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button
+              type="button"
+              class="flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold text-xs uppercase rounded-xl"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="flex-grow flex-1 py-2.5 bg-primary text-white font-bold text-xs uppercase rounded-xl"
+            >
+              Record
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL POPUP: ADD CATEGORY DETAILS -->
+    <div
+      id="modal-cat"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+    >
+      <div
+        class="bg-white w-full max-w-sm rounded-[24px] p-6 shadow-xl relative"
+      >
+        <button
+          class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-mono text-xl"
+        >
+          ×
+        </button>
+        <h3
+          class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4"
+        >
+          Create Budget Category
+        </h3>
+
+        <form class="space-y-4">
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Category Name</label
+            >
+            <input
+              type="text"
+              id="cat-form-name"
+              class="w-full px-4 py-2 border border-slate-200 rounded-xl font-bold"
+              required
+              placeholder="E.g. Travel"
+            />
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Monthly Ceiling ($)</label
+            >
+            <input
+              type="number"
+              id="cat-form-limit"
+              class="w-full px-4 py-2 border border-slate-200 rounded-xl font-bold"
+              required
+              placeholder="500"
+            />
+          </div>
+          <div>
+            <label
+              class="text-[10px] font-bold text-slate-400 uppercase block mb-1"
+              >Visual Icon Symbol</label
+            >
+            <select
+              id="cat-form-icon"
+              class="w-full px-4 py-2 border bg-white border-slate-200 rounded-xl text-xs font-bold"
+            >
+              <option value="shopping_basket">Shopping Basket 🛒</option>
+              <option value="home">Home & Utility 🏠</option>
+              <option value="movie">Movie Reel 🎬</option>
+              <option value="restaurant">Dining Out 🍔</option>
+              <option value="directions_car">Transport & fuel 🚗</option>
+              <option value="health_and_safety">Medical ⚕️</option>
+            </select>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <button
+              type="button"
+              class="flex-1 py-2.5 bg-slate-100 text-slate-700 font-bold text-xs uppercase rounded-xl"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="flex-grow flex-1 py-2.5 bg-primary text-white font-bold text-xs uppercase rounded-xl"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ID placeholders for backward compatibility -->
+    <div class="hidden">
+      <button id="edit-groceries"></button>
+      <button id="delete-groceries"></button>
+      <button id="edit-rent"></button>
+      <button id="delete-rent"></button>
+      <button id="edit-ent"></button>
+      <button id="delete-ent"></button>
+      <button id="edit-dining"></button>
+      <button id="delete-dining"></button>
+      <button id="edit-transport"></button>
+      <button id="delete-transport"></button>
+      <button id="delete-btn-001"></button>
+      <button id="delete-btn-002"></button>
+      <button id="delete-btn-003"></button>
+      <button id="delete-btn-004"></button>
+      <button id="delete-btn-005"></button>
+    </div>
+
+    <!-- Application Logic -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
