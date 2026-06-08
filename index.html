@@ -454,6 +454,7 @@
               >
                 Quick Log Transaction
               </h3>
+              <!-- Transaction Input Form -->
               <form id="transaction-form" class="space-y-4">
                 <div>
                   <label
@@ -464,14 +465,16 @@
                     <button
                       type="button"
                       id="type-expense"
-                      class="flex-1 py-1 text-xs font-bold rounded-lg bg-white text-secondary shadow-sm"
+                      name="type-expense"
+                      class="flex-1 py-1 text-xs font-bold rounded-lg text-secondary shadow-sm"
                     >
                       Expense
                     </button>
                     <button
                       type="button"
                       id="type-income"
-                      class="flex-grow flex-1 py-1 text-xs font-bold rounded-lg text-slate-400"
+                      name="type-income"
+                      class="flex-grow flex-1 py-1 text-xs font-bold rounded-lg text-slate-9000"
                     >
                       Income
                     </button>
@@ -485,12 +488,13 @@
                   <input
                     type="hidden"
                     id="transaction_type"
-                    name="type"
+                    name="transactionType"
                     value="expense"
                   />
                   <input
                     type="number"
                     id="amount"
+                    name="totalAmount"
                     step="0.01"
                     class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
                     required
@@ -504,6 +508,7 @@
                   >
                   <select
                     id="category"
+                    name="categoryName"
                     class="w-full px-4 py-2 border border-slate-200 bg-white rounded-xl text-xs font-bold"
                     required
                   >
@@ -523,6 +528,7 @@
                   <input
                     type="date"
                     id="date"
+                    name="transactionTime"
                     class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
                     required
                   />
@@ -535,6 +541,7 @@
                   <input
                     type="text"
                     id="note"
+                    name="transactionNote"
                     class="w-full px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold"
                     placeholder="E.g. Whole Foods"
                   />

@@ -53,7 +53,7 @@ export function getTransactions(): Transaction[] {
 export function addTransaction(
   transactionType: "income" | "expense",
   totalAmount: number,
-  categoryId: number,
+  categoryName: string,
   transactionTime: string,
   transactionNote: string,
 ) {
@@ -61,10 +61,10 @@ export function addTransaction(
   let newTransaction: Transaction = {
     transactionId: Date.now(),
     transactionType: transactionType,
-    transactionNote: transactionNote,
-    transactionTime: transactionTime,
-    categoryId: categoryId,
     totalAmount: totalAmount,
+    categoryName: categoryName,
+    transactionTime: transactionTime,
+    transactionNote: transactionNote,
   };
   transactionList.push(newTransaction);
   localStorage.setItem(
@@ -108,7 +108,7 @@ export function getMonthSummary(month: string, year: string) {
 }
 
 export function getTransacionByType(
-  type: string,
+  type: "income" | "expense",
   month: string,
   year: string,
 ): number {
