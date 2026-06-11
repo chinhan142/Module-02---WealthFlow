@@ -5,6 +5,11 @@ import {
   renderTransactionSheet,
   transactionForm,
 } from "./ui/transactions";
+import {
+  categoryForm,
+  categoryFormPopClose,
+  renderCategories,
+} from "./ui/categories";
 
 router();
 // Dashboard screen
@@ -14,5 +19,10 @@ renderDashboardUI();
 transactionForm();
 renderTransactionSheet();
 deleteTransactionLedger();
+
+// Category screen
+categoryFormPopClose();
+categoryForm();
+renderCategories();
 
 window.addEventListener("hashchange", router);

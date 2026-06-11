@@ -13,10 +13,21 @@ export function getCategories(): Category[] {
   return JSON.parse(categoryList);
 }
 
-// Fix this function later!
-export function addCategory(category: Category) {
+export function addCategory(
+  categoryName: string,
+  categoryDescription: string,
+  categoryLimit: number,
+  categoryIcon: string,
+) {
   const categoryList = getCategories();
-  categoryList.push(category);
+  let newCategory: Category = {
+    categoryId: Date.now(),
+    categoryName: categoryName,
+    categoryDescription: categoryDescription,
+    categoryLimit: categoryLimit,
+    categoryIcon: categoryIcon,
+  };
+  categoryList.push(newCategory);
   localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(categoryList));
 }
 

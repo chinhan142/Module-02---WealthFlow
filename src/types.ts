@@ -5,6 +5,7 @@ export interface Category {
   categoryName: string;
   categoryDescription: string;
   categoryLimit: number;
+  categoryIcon: string;
 }
 
 export interface Transaction {
