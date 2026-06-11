@@ -2,6 +2,28 @@ import { addTransaction, getTransactions, deleteTransaction } from "../storage";
 export function transactionForm() {
   const formEl = document.querySelector("#transaction-form");
 
+  // Transaction type logic
+  const transactionTypeEl = document.querySelector("#transactionType");
+  const expenseBtnEl = document.querySelector("#type-expense");
+  const incomeBtnEl = document.querySelector("#type-income");
+
+  // Set transaction type
+  expenseBtnEl?.addEventListener("click", () => {
+    if (transactionTypeEl) {
+      (transactionTypeEl as HTMLInputElement).value = "expense";
+    }
+    (expenseBtnEl as HTMLElement).classList.add("bg-red-200");
+    (incomeBtnEl as HTMLElement).classList.remove("bg-green-200");
+  });
+
+  incomeBtnEl?.addEventListener("click", () => {
+    if (transactionTypeEl) {
+      (transactionTypeEl as HTMLInputElement).value = "income";
+    }
+    (incomeBtnEl as HTMLElement).classList.add("bg-green-200");
+    (expenseBtnEl as HTMLElement).classList.remove("bg-red-200");
+  });
+
   formEl?.addEventListener("submit", (event) => {
     event.preventDefault();
 
