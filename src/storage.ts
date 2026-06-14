@@ -64,6 +64,7 @@ export function getTransactions(): Transaction[] {
 export function addTransaction(
   transactionType: "income" | "expense",
   totalAmount: number,
+  // categoryId: number,
   categoryName: string,
   transactionTime: string,
   transactionNote: string,
@@ -73,6 +74,7 @@ export function addTransaction(
     transactionId: Date.now(),
     transactionType: transactionType,
     totalAmount: totalAmount,
+    // categoryId: categoryId,
     categoryName: categoryName,
     transactionTime: transactionTime,
     transactionNote: transactionNote,

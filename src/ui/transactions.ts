@@ -1,4 +1,9 @@
-import { addTransaction, getTransactions, deleteTransaction } from "../storage";
+import {
+  addTransaction,
+  getTransactions,
+  deleteTransaction,
+  getCategories,
+} from "../storage";
 export function transactionForm() {
   const formEl = document.querySelector("#transaction-form");
 
@@ -24,6 +29,9 @@ export function transactionForm() {
     (expenseBtnEl as HTMLElement).classList.remove("bg-red-200");
   });
 
+  // Render CategoryName List
+  transactionCategoryListRender();
+
   formEl?.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -46,6 +54,24 @@ export function transactionForm() {
       formEl.reset();
     }
   });
+}
+
+export function transactionCategoryListRender() {
+  const categoryListEl = document.querySelector("#categoryList");
+  if (categoryListEl) {
+    const categoryList = getCategories();
+
+    if (categoryListEl instanceof HTMLElement) {
+      categoryListEl.innerHTML = categoryList
+        .map(
+          (item) =>
+            `
+            <option>${item.categoryName}</option>
+          `,
+        )
+        .join("");
+    }
+  }
 }
 
 export function renderTransactionSheet() {

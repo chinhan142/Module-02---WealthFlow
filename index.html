@@ -489,7 +489,7 @@
                     type="hidden"
                     id="transactionType"
                     name="transactionType"
-                    value=""
+                    value="expense"
                   />
                   <input
                     type="number"
@@ -506,18 +506,14 @@
                     class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1"
                     >Category</label
                   >
+                  <!-- Hidden Category ID -->
                   <select
-                    id="categoryName"
+                    id="categoryList"
                     name="categoryName"
                     class="w-full px-4 py-2 border border-slate-200 bg-white rounded-xl text-xs font-bold"
                     required
                   >
-                    <option value="Groceries">Groceries</option>
-                    <option value="Rent & Utilities">Rent & Utilities</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Dining Out">Dining Out</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Income">Salary & Income</option>
+                  <!-- Render Categories List -->
                   </select>
                 </div>
                 <div>
