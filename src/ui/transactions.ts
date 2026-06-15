@@ -44,6 +44,7 @@ export function transactionForm() {
         addTransaction(
           transactionType,
           +formDataObject.totalAmount,
+          +formDataObject.categoryId,
           formDataObject.categoryName.toString(),
           formDataObject.transactionTime.toString(),
           formDataObject.transactionNote.toString(),
@@ -66,6 +67,7 @@ export function transactionCategoryListRender() {
         .map(
           (item) =>
             `
+            <input type="hidden" id="categoryId" name="categoryId" value="${item.categoryId}"/>
             <option>${item.categoryName}</option>
           `,
         )

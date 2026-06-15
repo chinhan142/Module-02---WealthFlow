@@ -9,20 +9,34 @@ import {
   categoryForm,
   categoryFormPopClose,
   renderCategories,
+  setupCategoryActions,
 } from "./ui/categories";
+import { initTime } from "./time";
 
-router();
-// Dashboard screen
-renderDashboardUI();
+function handleRouting() {
+  router();
+
+  const hash = window.location.hash || "#dashboard";
+  if (hash === "#dashboard" || hash === "") {
+    renderDashboardUI();
+  } else if (hash === "#transactions") {
+    renderTransactionSheet();
+  } else if (hash === "#categories") {
+    renderCategories();
+  }
+}
+
+window.addEventListener("hashchange", handleRouting);
+window.addEventListener("DOMContentLoaded", handleRouting);
 
 // Transaciton screen
 transactionForm();
-renderTransactionSheet();
 deleteTransactionLedger();
 
 // Category screen
 categoryFormPopClose();
 categoryForm();
-renderCategories();
+setupCategoryActions();
 
-window.addEventListener("hashchange", router);
+// Time filter
+initTime();

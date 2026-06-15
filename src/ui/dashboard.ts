@@ -1,10 +1,15 @@
 import { getMonthSummary } from "../storage";
+import { getDashboardSelectedTime } from "../time";
 
 export function renderDashboardUI() {
+  const time = getDashboardSelectedTime();
   const today = new Date(Date.now());
-  const todayMonth = (today.getMonth() + 1).toString();
-  const todayYear = today.getFullYear().toString();
-  const monthlyStats = getMonthSummary(todayMonth, todayYear);
+
+  // ?? -> nullish coalescing operator: safely fallback to the right side if the left is null or undefined -> this is more safe than the || operator
+  const month =
+    time?.selectedMonth.toString() ?? (today.getMonth() + 1).toString();
+  const year = time?.selectedYear.toString() ?? today.getFullYear();
+  const monthlyStats = getMonthSummary(month, year);
 
   const balanceAmountEl = document.querySelector("#balance-amount");
   if (balanceAmountEl) {
