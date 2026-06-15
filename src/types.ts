@@ -13,7 +13,7 @@ export interface Transaction {
   transactionType: "income" | "expense";
   transactionNote: string;
   transactionTime: string;
-  // categoryId: number;
+  categoryId: number;
   categoryName: string;
   totalAmount: number;
 }

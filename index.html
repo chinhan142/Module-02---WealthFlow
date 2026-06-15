@@ -37,7 +37,7 @@
         </span>
         <nav class="hidden md:flex items-center gap-6" id="desktop-nav">
           <a
-            class="tab-link text-primary border-b-2 border-primary pb-1 font-semibold text-xs uppercase"
+            class="tab-link text-on-surface-variant hover:text-primary transition-colors font-semibold text-xs uppercase"
             id="nav-dashboard"
             href="#dashboard"
           >
@@ -97,7 +97,7 @@
       <nav class="flex-grow space-y-1 mt-4">
         <a
           id="side-dashboard"
-          class="side-link w-full flex items-center gap-4 px-4 py-3 bg-secondary-container/35 text-primary font-bold rounded-xl text-xs uppercase text-left transition-all"
+          class="side-link w-full flex items-center gap-4 px-4 py-3 font-bold rounded-xl text-xs uppercase text-left transition-all"
           href="#dashboard"
         >
           <span class="material-symbols-outlined">dashboard</span>
@@ -182,21 +182,18 @@
               Financial Overview
             </h1>
             <p class="text-slate-400 text-sm mt-1">
-              Good morning, Alexander. Here is your current wealth status.
+              Hello User, welcome to WealthFlow
             </p>
           </div>
           <div
             id="filter-container"
             class="bg-white border border-slate-200 p-2 rounded-xl shadow-sm"
           >
-            <select
-              id="month-select"
-              class="bg-transparent border-none py-1 pl-2 pr-6 text-xs font-bold text-slate-700 outline-none cursor-pointer focus:ring-0"
-            >
-              <option>October 2023</option>
-              <option>September 2023</option>
-              <option>August 2023</option>
-            </select>
+            <input
+              type="month"
+              id="month-picker"
+              class="p-2 border rounded-xl"
+            />
           </div>
         </div>
 
@@ -224,16 +221,16 @@
                 id="balance-amount"
                 class="text-3xl font-extrabold text-primary tracking-tight"
               >
-                $124,592.00
+                <!-- $124,592.00 -->
               </h2>
-              <div
+              <!-- <div
                 class="mt-2 flex items-center gap-1 text-primary bg-primary/10 px-2.5 py-1 rounded-full w-fit"
               >
                 <span class="material-symbols-outlined text-[16px]"
                   >trending_up</span
                 >
                 <span class="text-xs font-semibold">+2.4% from last month</span>
-              </div>
+              </div> -->
             </div>
             <div class="relative z-10 flex gap-4 mt-6">
               <button
@@ -311,7 +308,7 @@
             class="md:col-span-4 grid grid-rows-2 gap-6"
           >
             <div
-              class="bg-white p-4 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center border-l-4 border-primary"
+              class="bg-white p-4 rounded-[20px] shadow-sm border flex flex-col justify-center border-l-4 border-primary"
             >
               <div class="flex items-center justify-between mb-1">
                 <span
@@ -322,12 +319,13 @@
                   >arrow_downward</span
                 >
               </div>
-              <span id="income-amount" class="text-lg font-bold text-primary"
-                >+$8,450.00</span
-              >
+              <span
+                id="income-amount"
+                class="text-lg font-bold text-primary"
+              ></span>
             </div>
             <div
-              class="bg-white p-4 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center border-l-4 border-red-600"
+              class="bg-white p-4 rounded-[20px] shadow-sm border flex flex-col justify-center border-l-4 border-red-600"
             >
               <div class="flex items-center justify-between mb-1">
                 <span
@@ -338,9 +336,10 @@
                   >arrow_upward</span
                 >
               </div>
-              <span id="expense-amount" class="text-lg font-bold text-slate-800"
-                >-$5,210.00</span
-              >
+              <span
+                id="expense-amount"
+                class="text-lg font-bold text-slate-800"
+              ></span>
             </div>
           </div>
 
@@ -513,7 +512,7 @@
                     class="w-full px-4 py-2 border border-slate-200 bg-white rounded-xl text-xs font-bold"
                     required
                   >
-                  <!-- Render Categories List -->
+                    <!-- Render Categories List -->
                   </select>
                 </div>
                 <div>
@@ -1191,12 +1190,12 @@
               name="categoryIcon"
               class="w-full px-4 py-2 border bg-white border-slate-200 rounded-xl text-xs font-bold"
             >
-              <option value="shopping_basket">Shopping Basket 🛒</option>
-              <option value="home">Home & Utility 🏠</option>
-              <option value="movie">Movie Reel 🎬</option>
-              <option value="restaurant">Dining Out 🍔</option>
-              <option value="directions_car">Transport & fuel 🚗</option>
-              <option value="health_and_safety">Medical ⚕️</option>
+              <option value="shopping_basket">🛒</option>
+              <option value="home">🏠</option>
+              <option value="movie">🎬</option>
+              <option value="restaurant">🍔</option>
+              <option value="directions_car">🚗</option>
+              <option value="health_and_safety">⚕️</option>
             </select>
           </div>
           <div class="flex gap-2 pt-2">

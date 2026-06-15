@@ -1,9 +1,12 @@
+import { getDashboardSelectedTime } from "./time";
 import type { Category, Transaction } from "./types";
 
 // Using enum for safety typo
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
   CATEGORIES: "wf_categories", // key name: wf_categories
   TRANSACTION: "wf_transaction",
+  MONTH: "wf_month",
+  YEAR: "wf_year",
 };
 
 // CATEGORY FUNCTION
@@ -54,6 +57,25 @@ export function deleteCategory(categoryId: number) {
   localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(newList));
 }
 
+export function getSpentAmountByCategory(categoryId: number): number {
+  const categoryTransaction = getTransactionInCategory(categoryId);
+  const categoryExpenseTransaction = categoryTransaction.filter(
+    (item) => item.transactionType === "expense",
+  );
+  const totalExpense = categoryExpenseTransaction.reduce(
+    (total, item) => total + item.totalAmount,
+    0,
+  );
+
+  return totalExpense;
+}
+
+export function getCategoryById(categoryId: number): Category | undefined {
+  const categoryList = getCategories();
+
+  return categoryList.find((item) => item.categoryId === categoryId);
+}
+
 // TRANSACTION FUNCTION
 export function getTransactions(): Transaction[] {
   let transactionList = localStorage.getItem(STORAGE_KEYS.TRANSACTION);
@@ -64,7 +86,7 @@ export function getTransactions(): Transaction[] {
 export function addTransaction(
   transactionType: "income" | "expense",
   totalAmount: number,
-  // categoryId: number,
+  categoryId: number,
   categoryName: string,
   transactionTime: string,
   transactionNote: string,
@@ -74,7 +96,7 @@ export function addTransaction(
     transactionId: Date.now(),
     transactionType: transactionType,
     totalAmount: totalAmount,
-    // categoryId: categoryId,
+    categoryId: categoryId,
     categoryName: categoryName,
     transactionTime: transactionTime,
     transactionNote: transactionNote,
@@ -133,4 +155,18 @@ export function getTransacionByType(
     return total; // In reduce(), must return the value after each iteration
   }, 0);
   return total;
+}
+
+export function getTransactionInCategory(categoryId: number): Transaction[] {
+  const time = getDashboardSelectedTime();
+  const month =
+    time?.selectedMonth.toString() ?? (new Date().getMonth() + 1).toString();
+  const year =
+    time?.selectedYear.toString() ?? new Date().getFullYear().toString();
+  const monthTransaction = getTransactionsByMonth(month, year);
+  const categoryMonthTransaction = monthTransaction.filter(
+    (item) => item.categoryId === categoryId,
+  );
+
+  return categoryMonthTransaction;
 }
