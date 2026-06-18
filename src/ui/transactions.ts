@@ -3,6 +3,7 @@ import {
   getTransactions,
   deleteTransaction,
   getCategories,
+  getCategoryIdByName,
 } from "../storage";
 export function transactionForm() {
   const formEl = document.querySelector("#transaction-form");
@@ -40,11 +41,27 @@ export function transactionForm() {
       const formDataObject = Object.fromEntries(formData);
 
       const transactionType = formDataObject.transactionType;
+
+      const category = getCategoryIdByName(
+        formDataObject.categoryName.toString(),
+      );
+      const categoryId = category?.categoryId ? category?.categoryId : 0;
+
       if (transactionType === "income" || transactionType === "expense") {
+        const amount = +formDataObject.totalAmount;
+        if (amount <= 0) {
+          alert("Amount must be a positive number!");
+          return;
+        }
+        if (!formDataObject.categoryName) {
+          alert("Please choose category!");
+          return;
+        }
+
         addTransaction(
           transactionType,
           +formDataObject.totalAmount,
-          +formDataObject.categoryId,
+          categoryId,
           formDataObject.categoryName.toString(),
           formDataObject.transactionTime.toString(),
           formDataObject.transactionNote.toString(),
@@ -58,27 +75,32 @@ export function transactionForm() {
 }
 
 export function transactionCategoryListRender() {
-  const categoryListEl = document.querySelector("#categoryList");
+  const categoryListEl = document.querySelector(
+    "#categoryList",
+  ) as HTMLSelectElement;
   if (categoryListEl) {
     const categoryList = getCategories();
-
-    if (categoryListEl instanceof HTMLElement) {
-      categoryListEl.innerHTML = categoryList
-        .map(
-          (item) =>
-            `
-            <input type="hidden" id="categoryId" name="categoryId" value="${item.categoryId}"/>
-            <option>${item.categoryName}</option>
-          `,
-        )
-        .join("");
-    }
+    categoryListEl.innerHTML = categoryList
+      .map(
+        (item) =>
+          `<option value="${item.categoryName}">${item.categoryName}</option>`,
+      )
+      .join("");
   }
 }
 
 export function renderTransactionSheet() {
   const transactionList = getTransactions();
   const ledgerTableBodyEl = document.querySelector("#ledger-table-body");
+
+  // Sorting transaction list
+  transactionList.sort((a, b) => {
+    const dateA = new Date(a.transactionTime).getTime();
+    const dateB = new Date(b.transactionTime).getTime();
+
+    return dateB - dateA;
+  });
+
   if (ledgerTableBodyEl instanceof HTMLElement) {
     ledgerTableBodyEl.innerHTML = transactionList
       .map(
@@ -114,7 +136,7 @@ export function renderTransactionSheet() {
           >
             ${
               item.transactionType === "income" ? "+" : "-"
-            }$${item.totalAmount.toFixed(2)}
+            }${item.totalAmount.toFixed(2)} VND
           </span>
         </td>
 

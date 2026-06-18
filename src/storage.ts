@@ -76,6 +76,16 @@ export function getCategoryById(categoryId: number): Category | undefined {
   return categoryList.find((item) => item.categoryId === categoryId);
 }
 
+export function getCategoryIdByName(
+  categoryName: string,
+): Category | undefined {
+  const categoryList = getCategories();
+
+  return categoryList.find(
+    (item) => item.categoryName.toLowerCase() === categoryName.toLowerCase(),
+  );
+}
+
 // TRANSACTION FUNCTION
 export function getTransactions(): Transaction[] {
   let transactionList = localStorage.getItem(STORAGE_KEYS.TRANSACTION);
@@ -169,4 +179,16 @@ export function getTransactionInCategory(categoryId: number): Transaction[] {
   );
 
   return categoryMonthTransaction;
+}
+
+export function isCategoryNameExists(
+  categoryName: string,
+  excludeId?: number,
+): boolean {
+  const categoryList = getCategories();
+  return categoryList.some(
+    (item) =>
+      item.categoryName.toLowerCase() === categoryName.toLowerCase() &&
+      item.categoryId !== excludeId,
+  );
 }

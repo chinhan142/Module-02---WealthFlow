@@ -1,7 +1,5 @@
 import { STORAGE_KEYS } from "./storage";
-import { renderCategories } from "./ui/categories";
 import { renderDashboardUI } from "./ui/dashboard";
-import { renderTransactionSheet } from "./ui/transactions";
 
 export function initTime() {
   const monthPickerEl = document.querySelector("#month-picker");

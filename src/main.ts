@@ -12,6 +12,9 @@ import {
   setupCategoryActions,
 } from "./ui/categories";
 import { initTime } from "./time";
+import { seedData } from "./seed";
+
+seedData();
 
 function handleRouting() {
   router();
