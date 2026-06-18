@@ -17,3 +17,8 @@ export interface Transaction {
   categoryName: string;
   totalAmount: number;
 }
+
+export interface MonthYear {
+  month: string;
+  year: string;
+}

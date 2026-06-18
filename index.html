@@ -64,6 +64,7 @@
           >
             Summary
           </a>
+          <input type="month" id="month-picker" class="p-2 border rounded-xl" />
         </nav>
       </div>
       <div class="flex items-center gap-4">
@@ -177,13 +178,7 @@
           <div
             id="filter-container"
             class="bg-white border border-slate-200 p-2 rounded-xl shadow-sm"
-          >
-            <input
-              type="month"
-              id="month-picker"
-              class="p-2 border rounded-xl"
-            />
-          </div>
+          ></div>
         </div>
 
         <!-- Bento Dashboard Grid -->
@@ -232,6 +227,7 @@
             <div
               class="relative w-32 h-32 mb-4 flex items-center justify-center"
             >
+              <!-- Monthly Usage Limit -->
               <svg class="w-full h-full -rotate-90">
                 <circle
                   class="text-slate-100"
@@ -252,7 +248,7 @@
                   stroke="#006c49"
                   stroke-width="8"
                   stroke-dasharray="339.29"
-                  stroke-dashoffset="100"
+                  stroke-dashoffset=""
                 ></circle>
               </svg>
               <div
@@ -261,18 +257,21 @@
                 <span
                   id="budget-circle-pct"
                   class="text-xl font-extrabold text-slate-800"
-                  >72%</span
-                >
+                ></span>
                 <span
                   class="text-[9px] uppercase font-bold text-slate-400 tracking-wider"
                   >Spent</span
                 >
               </div>
             </div>
-            <h3 class="text-xs font-bold text-slate-700 mt-2">On Track</h3>
-            <p class="text-[11px] text-slate-400 max-w-[180px] mt-1">
-              You records align safely within specified limits standard
-              ceilings.
+            <h3 id="status" class="text-xs font-bold text-slate-700 mt-2">
+              On Track
+            </h3>
+            <p
+              id="usage-claim"
+              class="text-[11px] text-slate-400 max-w-[180px] mt-1"
+            >
+              You spend properly with your monthly budget usage
             </p>
           </div>
 

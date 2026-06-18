@@ -1,5 +1,5 @@
 import { getDashboardSelectedTime } from "./time";
-import type { Category, Transaction } from "./types";
+import type { Category, MonthYear, Transaction } from "./types";
 
 // Using enum for safety typo
 export const STORAGE_KEYS = {
@@ -38,12 +38,14 @@ export function editCategory(
   categoryId: number,
   editName: string,
   editLimit: number,
+  editCategoryDescription: string,
 ) {
   const categoryList = getCategories();
   categoryList.forEach((categoryItem) => {
     if (categoryItem.categoryId == categoryId) {
       categoryItem.categoryName = editName;
       categoryItem.categoryLimit = editLimit;
+      categoryItem.categoryDescription = editCategoryDescription;
     }
   });
   localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(categoryList));
@@ -191,4 +193,48 @@ export function isCategoryNameExists(
       item.categoryName.toLowerCase() === categoryName.toLowerCase() &&
       item.categoryId !== excludeId,
   );
+}
+
+export function getTotalCategoryLimit() {
+  const categoryList = getCategories();
+  return categoryList.reduce((sum, item) => sum + item.categoryLimit, 0);
+}
+
+export function getMonthlyBudgetUsage() {
+  const categoryList = getCategories();
+  const totalLimit = getTotalCategoryLimit();
+
+  if (totalLimit === 0) return 0;
+
+  const totalExpense = categoryList.reduce((sumExpense, item) => {
+    const itemId = item.categoryId;
+    const itemTotalExpense = getSpentAmountByCategory(itemId);
+    return sumExpense + itemTotalExpense;
+  }, 0);
+
+  const percentage = (totalExpense / totalLimit) * 100;
+  return Math.min(percentage, 100);
+}
+
+export function getExistMonthYear(): MonthYear[] {
+  const transasctionList = getTransactions();
+  const existedMonthYear: MonthYear[] = [];
+
+  // Get existed month and year
+  transasctionList.forEach((item) => {
+    const time = new Date(item.transactionTime);
+
+    const month = (time.getMonth() + 1).toString();
+    const year = time.getFullYear().toString();
+
+    const isExisted = existedMonthYear.some(
+      (item) => item.month === month && item.year === year,
+    );
+
+    if (!isExisted) {
+      existedMonthYear.push({ month, year });
+    }
+  });
+
+  return existedMonthYear;
 }

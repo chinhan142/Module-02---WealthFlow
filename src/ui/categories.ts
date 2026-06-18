@@ -7,6 +7,7 @@ import {
   getSpentAmountByCategory,
   isCategoryNameExists,
 } from "../storage";
+import { getDashboardSelectedTime } from "../time";
 import { transactionCategoryListRender } from "./transactions";
 
 export function categoryFormPopClose() {
@@ -57,6 +58,7 @@ export function categoryForm() {
         alert("Limit must be a positive number!");
         return;
       }
+
       if (formObject.categoryName.toString().trim() === "") {
         alert("Category name can't be empty!");
         return;
@@ -67,6 +69,7 @@ export function categoryForm() {
           +editIdEl.value,
           formObject.categoryName.toString(),
           +formObject.categoryLimit,
+          formObject.categoryDescription.toString(),
         );
       } else {
         addCategory(
@@ -89,6 +92,15 @@ export function categoryForm() {
 
 export function renderCategories() {
   const categoryGridEl = document.querySelector("#category-grid");
+
+  const monthPickerEl = document.querySelector(
+    "#month-picker",
+  ) as HTMLInputElement;
+
+  const time = getDashboardSelectedTime();
+  if (time && monthPickerEl) {
+    monthPickerEl.value = `${time.selectedYear}-${time.selectedMonth.toString().padStart(2, "0")}`;
+  }
 
   if (categoryGridEl instanceof HTMLElement) {
     const categoryList = getCategories();
