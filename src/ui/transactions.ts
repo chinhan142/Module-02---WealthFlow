@@ -73,10 +73,12 @@ export function transactionForm() {
         // Alert budget
         const category = getCategoryById(categoryId);
         const spent = getSpentAmountByCategory(categoryId);
-        if (category && spent + amount > category.categoryLimit) {
-          showBudgetAlert(
-            `Alert: You are spending over budget limit of ${category.categoryName}`,
-          );
+        if (transactionType === "expense") {
+          if (category && spent + amount > category.categoryLimit) {
+            showBudgetAlert(
+              `Alert: You are spending over budget limit of ${category.categoryName}`,
+            );
+          }
         }
       }
 
