@@ -5,6 +5,7 @@ import {
   getCategories,
   getCategoryById,
   getSpentAmountByCategory,
+  getTransactions,
   isCategoryNameExists,
 } from "../storage";
 import { getDashboardSelectedTime } from "../time";
@@ -221,6 +222,23 @@ export function setupCategoryActions() {
     const categoryId = Number(target.dataset.categoryId);
 
     if (target.classList.contains("delete-category")) {
+      const transactions = getTransactions();
+      const hasTransactions = transactions.some(
+        (item) => item.categoryId === categoryId,
+      );
+
+      if (hasTransactions) {
+        const confirmDelete = confirm(
+          `Warning: This category has transactinos inside. Are you sure you want to delete it?`,
+        );
+        if (!confirmDelete) return;
+      } else {
+        const secondConfirm = confirm(
+          "Are you really sure to delete this category?",
+        );
+        if (!secondConfirm) return;
+      }
+
       deleteCategory(categoryId);
 
       renderCategories();
