@@ -1,7 +1,7 @@
 import { STORAGE_KEYS } from "./storage";
 
 export function seedCategories() {
-  if (localStorage.getItem(STORAGE_KEYS.CATEGORIES)) return;
+  // if (localStorage.getItem(STORAGE_KEYS.CATEGORIES)) return;
 
   localStorage.setItem(
     STORAGE_KEYS.CATEGORIES,
@@ -67,7 +67,7 @@ export function seedCategories() {
 }
 
 export function seedTransaction() {
-  if (localStorage.getItem(STORAGE_KEYS.TRANSACTION)) return;
+  // if (localStorage.getItem(STORAGE_KEYS.TRANSACTION)) return;
 
   localStorage.setItem(
     STORAGE_KEYS.TRANSACTION,
