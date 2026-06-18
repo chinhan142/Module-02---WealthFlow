@@ -5,7 +5,10 @@ import {
   getCategories,
   getCategoryById,
   getSpentAmountByCategory,
+  isCategoryNameExists,
 } from "../storage";
+import { getDashboardSelectedTime } from "../time";
+import { transactionCategoryListRender } from "./transactions";
 
 export function categoryFormPopClose() {
   const formPopEl = document.querySelector("#modal-cat");
@@ -43,12 +46,30 @@ export function categoryForm() {
       const editIdEl = categoryFormEl.querySelector(
         "#edit-id",
       ) as HTMLInputElement | null;
+      const editId = editIdEl?.value ? +editIdEl.value : undefined;
+
+      if (isCategoryNameExists(formObject.categoryName.toString(), editId)) {
+        alert("This category name is existed! Please enter another name!");
+        return;
+      }
+
+      const limit = +formObject.categoryLimit;
+      if (limit <= 0) {
+        alert("Limit must be a positive number!");
+        return;
+      }
+
+      if (formObject.categoryName.toString().trim() === "") {
+        alert("Category name can't be empty!");
+        return;
+      }
 
       if (editIdEl && editIdEl.value !== "") {
         editCategory(
           +editIdEl.value,
           formObject.categoryName.toString(),
           +formObject.categoryLimit,
+          formObject.categoryDescription.toString(),
         );
       } else {
         addCategory(
@@ -59,22 +80,27 @@ export function categoryForm() {
         );
       }
 
-      const hiddenIdInput = categoryFormEl.querySelector(
-        "#edit-id",
-      ) as HTMLInputElement;
-      if (hiddenIdInput) {
-        hiddenIdInput.value = "";
-      }
-
+      if (editIdEl) editIdEl.value = "";
       categoryFormEl.reset();
       document.querySelector("#modal-cat")?.classList.add("hidden");
+
       renderCategories();
+      transactionCategoryListRender();
     }
   });
 }
 
 export function renderCategories() {
   const categoryGridEl = document.querySelector("#category-grid");
+
+  const monthPickerEl = document.querySelector(
+    "#month-picker",
+  ) as HTMLInputElement;
+
+  const time = getDashboardSelectedTime();
+  if (time && monthPickerEl) {
+    monthPickerEl.value = `${time.selectedYear}-${time.selectedMonth.toString().padStart(2, "0")}`;
+  }
 
   if (categoryGridEl instanceof HTMLElement) {
     const categoryList = getCategories();
@@ -112,7 +138,7 @@ export function renderCategories() {
             </p>
 
             <p class="text-xl font-bold text-primary mt-1">
-              $${category.categoryLimit.toLocaleString()}
+              ${category.categoryLimit.toLocaleString()} VND
             </p>
           </div>
 
