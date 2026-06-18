@@ -11,7 +11,7 @@ export function renderSumaryTable() {
 
         return `
         <tr class="hover:bg-slate-50 transition-colors">
-            <td class="py-4 px-5 font-medium text-slate-700">06 /
+            <td class="py-4 px-5 font-medium text-slate-700">
                 ${item.month} / ${item.year}
             </td>
             <td class="py-4 px-5 text-right text-green-600 font-medium">
