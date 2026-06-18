@@ -4,7 +4,10 @@ import {
   deleteTransaction,
   getCategories,
   getCategoryIdByName,
+  getCategoryById,
+  getSpentAmountByCategory,
 } from "../storage";
+import { showBudgetAlert } from "./alert";
 export function transactionForm() {
   const formEl = document.querySelector("#transaction-form");
 
@@ -66,6 +69,15 @@ export function transactionForm() {
           formDataObject.transactionTime.toString(),
           formDataObject.transactionNote.toString(),
         );
+
+        // Alert budget
+        const category = getCategoryById(categoryId);
+        const spent = getSpentAmountByCategory(categoryId);
+        if (category && spent + amount > category.categoryLimit) {
+          showBudgetAlert(
+            `Alert: You are spending over budget limit of ${category.categoryName}`,
+          );
+        }
       }
 
       renderTransactionSheet();
